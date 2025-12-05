@@ -1,0 +1,26 @@
+begin
+    a = 1;
+    b = 2;
+    d = 0;
+    wr a;
+    wr b;
+
+    begin
+        c = a + b;
+        wr c;
+    end;
+
+    if a < b then
+        wr 100
+    else
+        wr 200;
+
+    while a < 5 do
+    begin
+        a = a + 1;
+        wr a
+    end;
+
+    d = (a * 2) - (b + 3);
+    wr d
+end

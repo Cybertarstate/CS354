@@ -1,0 +1,3 @@
+||grammer says right associative answer should be 12, but program is doing left associative answer 3 
+x = 24 / 4 / 2;
+wr x

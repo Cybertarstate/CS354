@@ -1,0 +1,5 @@
+rd x;
+while x > 0 do begin
+    wr x;
+    x = x - 1
+end

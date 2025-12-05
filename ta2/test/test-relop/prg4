@@ -1,0 +1,6 @@
+begin
+    x = 4;
+    y = 9;
+    if x <> y then
+    wr x
+end

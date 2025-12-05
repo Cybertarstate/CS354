@@ -1,0 +1,4 @@
+test-nodefactneg/gen.c:3:10: warning: variable 'x' set but not used [-Wunused-but-set-variable]
+  double x, y, z;
+         ^
+1 warning generated.

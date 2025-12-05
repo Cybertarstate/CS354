@@ -1,0 +1,8 @@
+||testcommment
+|* this is a comment
+    still comment *|    
+x=4*2
+||also this is comment
+||what about this
+;
+wr x

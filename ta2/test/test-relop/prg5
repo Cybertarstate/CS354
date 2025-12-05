@@ -1,0 +1,6 @@
+begin
+    x = 12;
+    y = 12;
+    if x == y then
+    wr x
+end
