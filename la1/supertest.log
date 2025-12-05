@@ -1,0 +1,85 @@
+%%%% Starting test supertest
+Group begin: supertest
+Test begin:
+  test-name: "super-duper with 123 count 1"
+  source-file: "testsupedupe.scm"
+  source-line: 7
+  source-form: (test-equal "super-duper with 123 count 1" 123 (super-duper 123 1))
+Test end:
+  result-kind: pass
+  actual-value: 123
+  expected-value: 123
+Test begin:
+  test-name: "super-duper with 123 count 2"
+  source-file: "testsupedupe.scm"
+  source-line: 12
+  source-form: (test-equal "super-duper with 123 count 2" 123 (super-duper 123 2))
+Test end:
+  result-kind: pass
+  actual-value: 123
+  expected-value: 123
+Test begin:
+  test-name: "super-duper with '() count 1"
+  source-file: "testsupedupe.scm"
+  source-line: 17
+  source-form: (test-equal "super-duper with '() count 1" (quote ()) (super-duper (quote ()) 1))
+Test end:
+  result-kind: pass
+  actual-value: ()
+  expected-value: ()
+Test begin:
+  test-name: "super-duper with '() count 2"
+  source-file: "testsupedupe.scm"
+  source-line: 22
+  source-form: (test-equal "super-duper with '() count 2" (quote ()) (super-duper (quote ()) 2))
+Test end:
+  result-kind: pass
+  actual-value: ()
+  expected-value: ()
+Test begin:
+  test-name: "super-duper with '(x) count 1"
+  source-file: "testsupedupe.scm"
+  source-line: 27
+  source-form: (test-equal "super-duper with '(x) count 1" (quote (x)) (super-duper (quote (x)) 1))
+Test end:
+  result-kind: pass
+  actual-value: (x)
+  expected-value: (x)
+Test begin:
+  test-name: "super-duper with '(x) count 2"
+  source-file: "testsupedupe.scm"
+  source-line: 32
+  source-form: (test-equal "super-duper with '(x) count 2" (quote (x x)) (super-duper (quote (x)) 2))
+Test end:
+  result-kind: pass
+  actual-value: (x x)
+  expected-value: (x x)
+Test begin:
+  test-name: "super-duper with '(x y) count 1"
+  source-file: "testsupedupe.scm"
+  source-line: 37
+  source-form: (test-equal "super-duper with '(x y) count 1" (quote (x y)) (super-duper (quote (x y)) 1))
+Test end:
+  result-kind: pass
+  actual-value: (x y)
+  expected-value: (x y)
+Test begin:
+  test-name: "super-duper with '(x y) count 2"
+  source-file: "testsupedupe.scm"
+  source-line: 41
+  source-form: (test-equal "super-duper with '(x y) count 2" (quote (x x y y)) (super-duper (quote (x y)) 2))
+Test end:
+  result-kind: pass
+  actual-value: (x x y y)
+  expected-value: (x x y y)
+Test begin:
+  test-name: "super-duper with '((a b) y) count 3"
+  source-file: "testsupedupe.scm"
+  source-line: 46
+  source-form: (test-equal "super-duper with '((a b) y) count 3" (quote ((a a a b b b) (a a a b b b) (a a a b b b) y y y)) (super-duper (quote ((a b) y)) 3))
+Test end:
+  result-kind: pass
+  actual-value: ((a a a b b b) (a a a b b b) (a a a b b b) y y y)
+  expected-value: ((a a a b b b) (a a a b b b) (a a a b b b) y y y)
+Group end: supertest
+# of expected passes      9

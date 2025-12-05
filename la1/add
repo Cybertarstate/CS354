@@ -1,0 +1,19 @@
+(define increment
+	(lambda (x)
+		(+ x 1)))
+(define decrement
+	(lambda (x)
+		(- x 1)))
+(increment 10)
+(decrement 10)
+
+(define recursive-add
+	(lambda (x y)
+		(if (zero? y)
+			x
+			(recursive-add (increment y (decrement y))))))
+
+(recursive-add 9 5)
+(recursive-add 7 22)
+(recursive-add 0 6)
+

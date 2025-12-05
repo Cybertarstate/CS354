@@ -1,0 +1,47 @@
+1.
+
+(A) How would a programmer decide which to use? In other words, What
+are the pros and cons?
+	
+	Stack Pros- Quick memory call and return, no overhead from garbage collection, more local cacheing = faster execution, Memory safety - the object doesnt outlive the scope
+
+	Stack Cons- object does not outlive the method, size can need to be known at compile time - not ideal for big things or dynamic things, Large objects and dynamic objects can cause stack overflow.
+
+	Heap Pros - Objects live longer than function, better for dynamic objects and large objects
+
+	Heap Cons - Slower allocation compared to stack, this one requires garbage collection - adding to cost of runtime, memory behaves more fragmented - poorer cache localization
+
+	A programmer decides to use stack vs heap, depending on what they need out of the program and what problem they are going to solve. If they need speed and quick short lived objects, go for the stack. If they need long lived, shared, large objects go for the heap.
+
+(B) Should there be a default choice? Could a translator make the choice? Explain why and how.
+	I think for caution and safety heap would be a good default choice, its got garbage collection, more careful memory managent. You take the performance hit, but if the programmer is looking to optimize speed, then they can make any change they want for their performance needs. Well the translator needs to parse and scan a program, so I would think absolutely a translator could 'detect' how objects might be passed and what they mean, and determine if something exists accross the program or if it just exists locally in a method. Thus, allowing it to make a determination of what sort of memory it needs.
+
+(C) What is the lifetime of a stack-allocated object? How might it be deallocated?
+	The life time of the stack allocated object is equal to the lifetime of the stack frame in which it was created. The stack allocated object is created when the stack frame is pushed. It gets destroyed when the function returns and the stack frame is popped. The stacked pointer moves, and its deallocated.
+
+(D)Could a stack-allocated object could be returned to a calling function? If so, explain how.
+	It doesnt really work that way because it gets destroyed once its done. I think you can copy it to the heap if another function needed to call it.
+
+
+2. interface F { void run(); }
+
+public class ClosureTest {
+    private static void g(F f) {
+        int i = 2;  // late/shallow - not used
+        f.run();
+    }
+
+    private static void closure() {
+        int i = 1;  // early/deep - captured by lambda
+        g(() -> System.out.println(i));
+    }
+
+    public static void main(String[] args) {
+        closure();
+    }
+}
+
+
+This code returns 1, demonstrating the deep binding from java.
+
+3.

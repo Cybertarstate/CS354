@@ -1,0 +1,112 @@
+Question #1:
+quote     		"
+backSlash   	\\
+octalDigit  	0|1|2|3|4|5|6|7
+escapeChar  	[abfnrtv"'\\]
+normalChar  	[^"\\]
+octalEscape 	backSlash octalDigit (octalDigit)? (octalDigit)?
+singleEscape 	backSlash escapeChar
+char 			normalChar | singleEscape | octalEscape
+string 			quote	char*	quote      
+
+Question #2:
+
+-x*2
+expr => term
+     => term mult_op factor
+     => factor mult_op factor
+     => '-' factor mult_op factor
+     => '-' id mult_op factor
+     => '-' id '*' factor
+     => '-' id '*' number
+
+-(x*-2)
+expr => term
+     => factor
+     => '-' factor
+     => '-' '(' expr ')'
+     => '-' '(' term ')'
+     => '-' '(' expr mult_op factor ')'
+     => '-' '(' term mult_op factor ')'
+     => '-' '(' factor mult_op factor ')'
+     => '-' '(' id mult_op factor ')'
+     => '-' '(' id '*' factor ')'
+     => '-' '(' id '*' '-' factor ')'
+     => '-' '(' id '*' '-' number ')'
+
+
+
+Question #3:
+(left associative)
+binary: binary infix_op expr
+| expr
+expr : expr add_op term
+| term
+term : term mult_op factor
+| factor
+factor : id
+| number
+| ’-’ factor
+| ’(’ expr ’)’
+infix_op: '<<'
+| '>>'
+add_op : ’+’
+| ’-’
+mult_op : ’*’
+| ’/’
+
+2+3<<1 = 10 (left associative)
+binary => binary infix_op expr
+     => expr infix_op expr
+     => expr add_op term infix_op expr
+     => term add_op term infix_op expr
+     => factor add_op term infix_op expr
+     => number add_op term infix_op expr
+     => number '+' term infix_op expr
+     => number '+' factor infix_op expr
+     => number '+' number infix_op expr
+     => number '+' number '<<' term
+     => number '+' number '<<' factor
+     => number '+' number '<<' number
+
+
+
+(right associative)
+binary: expr infix_op binary
+| expr
+expr : expr add_op term
+| term
+term : term mult_op factor
+| factor
+factor : id
+| number
+| ’-’ factor
+| ’(’ expr ’)’
+infix_op: '<<'
+| '>>'
+add_op : ’+’
+| ’-’
+mult_op : ’*’
+| ’/’
+
+2+3<<1 = 7 (right associative)
+binary => expr infix_op binary
+     => expr infix_op expr
+     => expr infix_op term
+     => expr infix_op factor
+     => expr infix_op number
+     => expr '<<' number
+     => expr add_op term '<<' number
+     => term add_op term '<<' number
+     => factor add_op term '<<' number
+     => number '+' term '<<' number
+     => number '+' factor '<<' number
+     => number '+' number '<<' number
+
+
+Question #4:
+4a. It depends on the error presented but symptoms make file commands in the wrong order, could be build failures, long build times, missing dependencies/missing files needed for the build, conflicts where a function might rely on another that has not been generated yet, or multiple instantiations of object files being called by the linker.
+
+4b. Make file is broken into chunks, and each chunk is a recipe, and the recipes have a target: dependency format. The dependency tree is based on the build process where we need to take a .c file preprocess, compile it into assembly .s, assemble it into an object file .o and finally link it into an executable. The file is read from top to bottom to gather data, but after, it does a dependency analysis and analyzes the relationships between the targets and the dependencies. Based on the analysis it utilizes topological sorting to arrange the targets into a proper execution order.
+
+4c. Things that may undermine the make file algorithm would be: modifying the make file during execution, failing to specify all dependencies, innaccurate time stamps, incorrect use of the makefile structured rules, creating temporary files during the build steps and not tracking them properly as dependencies, or cleaning them properly. 
